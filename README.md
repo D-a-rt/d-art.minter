@@ -8,7 +8,7 @@ Minter contract in order to mint token on the Tezos blockchain, wrapped into a t
 
 To install all the dependencies of the project please run:
     
-    $ cd /d-art.contracts 
+    $ cd /d-art.minter 
     $ npm install
     $ npm run-script build
     $ npm install -g
