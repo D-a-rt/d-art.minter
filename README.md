@@ -12,12 +12,8 @@ To install all the dependencies of the project please run:
     $ npm install
     $ npm run-script build
     $ npm install -g
-    
-In order to run the tests:
-
-    $ npm run-script test
         
-The different available commands are:
+The available commands are:
 
     $ d-art.minter compile-contract
         (Compile the contract contained in the project)
@@ -81,7 +77,7 @@ type tokens_minter = (token_id, address) big_map
 
 ```
 
-The assets storage is responsible to hold all the information of the minted tokens, which token belongs to who (`ledger`), what are the tokens metadata (`token_metadata`), the next `token_id`, the list of contracts that can perform operation on behalf of a user `operators`, the list of minting authorized address  `minters`, and `tokens_minter` the big_map which address created which token in order to ease the royalties system.
+The `assets` storage is responsible to hold all the information of the minted tokens, which token belongs to who (`ledger`), what are the tokens' metadata (`token_metadata`), the next `token_id`, the list of contracts that can perform operation on behalf of an owner `operators`, the list of minting authorized address  `minters`, and `tokens_minter` is the big_map responsible to keep a record of which address created which token in order to ease the royalties system.
 
 ### admin
 
@@ -101,11 +97,11 @@ type admin_storage = {
 
 ```
 
-The admin storage only hold the address of the admin and is here in order to add or remove authorized minter 
+The admin storage only hold the address of the admin. He is allowed to add or remove authorized minter 
 
 ### metadata
 
-The thirs field is `metadata`:
+The third field is `metadata`:
 
 
 ``` ocaml
@@ -116,12 +112,12 @@ type nft_asset_storage = {
 }
 ```
 
-It holds the contract metadata, general information of the contract like name, description...
+It holds the contract metadata, general information like name, description...
 
 
 ## Entrypoints
 
-The different entrypoints of the contract are define by:
+The different entrypoints of the contract are defined by:
 
 ``` ocaml
 type nft_asset_entrypoints =
@@ -132,7 +128,7 @@ type nft_asset_entrypoints =
 
 ### Assets
 
-The `Assets` entrypoint is responsible to transfer token, update the authorized operators, and transfering a token while sending a royaltie to the minter.
+The `Assets` entrypoint is responsible to transfer tokens, update the authorized operators, and send royalties to the minters.
 
 ``` ocaml
 type fa2_entry_points =
@@ -172,7 +168,7 @@ type balance_of_param =
 
 `Transfer` : Transfer tokens
 
-`Balance_of` : get the balance for a token_id and an owner
+`Balance_of` : Get the balance for a token_id and an owner
 
 `Update_operators` : Add or remove operator for token
 
@@ -197,7 +193,7 @@ type token_input_metadata =
 
 ```
 
-Give it an owner and token_metadata and the token will be created. The entrypoint is only accessible for the authorized minter, in the `minters big_map`
+Give it an owner and token_metadata and the token will be created. The entrypoint is only accessible for authorized minter.
 
 ### Admin
 
