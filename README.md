@@ -19,10 +19,10 @@ In order to run the tests:
         
 The different available commands are:
 
-    $ d-art.contracts compile-contract
+    $ d-art.minter compile-contract
         (Compile the contract contained in the project)
 
-    $ d-art.contracts deploy-contract
+    $ d-art.minter deploy-contract
         (Deploy the contract previously compiled in the project)
 
 
