@@ -45,13 +45,16 @@ export async function deployContract(): Promise<void> {
                 tokens_minter: new MichelsonMap()
             },
             admin:  'tz1cihyVZ8xcFXMEWcdbLdMNABcSfZyNcCbZ',
-            metadata:  new MichelsonMap()
+            metadata:  MichelsonMap.fromLiteral({
+                    "": "697066733a2f2f516d63657a745574704559523370754674733344464c354277674538315076715942527265717653565854673561"
+                }
+            )
         }
     }
     
     try {
-        const toolkit = new TezosToolkit('https://edonet.smartpy.io');
-        toolkit.setProvider({ signer: await InMemorySigner.fromSecretKey('edskS9Gdwb6GqG3arwBHi2K5n5D8do8ygqsBvy5nTpDfJ37iLJSbAML8UymBUJGbFUzdqQ3USWFuyphSPzAmxWRqNG9q9fhfzr') });
+        const toolkit = new TezosToolkit('http://florence.newby.org:8732');
+        toolkit.setProvider({ signer: await InMemorySigner.fromSecretKey(process.env.PRIVATE_KEY) });
 
         const originationOp = await toolkit.wallet.originate(originateParam).send();
         console.log(originationOp)
